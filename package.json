@@ -29,5 +29,15 @@
   "peerDependencies": {
     "next": ">= 13.0.0",
     "react": ">= 16.0.0"
+  },
+  "keywords": [
+    "react",
+    "nextjs",
+    "serverless"
+  ],
+  "homepage": "https://github.com/lws803/next-use-warmroutes",
+  "funding": {
+    "type": "individual",
+    "url": "https://www.buymeacoffee.com/lws803"
   }
 }
