@@ -10,6 +10,6 @@ when the current route matches the route defined in the object.
 ```ts
 // Use this at the root of your Next.js application, _app.tsx for maximum effectiveness
 useWarmRoutes({
-  "/": ["/articles/*", "/api/article"],
+  "/": ["/articles/*", "/api/articles"],
 });
 ```
