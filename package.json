@@ -1,0 +1,25 @@
+{
+  "name": "next-use-warmroutes",
+  "version": "0.0.1",
+  "description": "Next useWarmRoutes hook gives developers control over when to warm up a specific serverless / SSR route.",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "author": "lws803",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.8.3",
+    "@parcel/transformer-typescript-types": "^2.8.3",
+    "@types/react": "^18.2.6",
+    "parcel": "^2.8.3",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "next": ">= 13.0.0",
+    "react": ">= 16.0.0"
+  }
+}
