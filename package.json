@@ -39,5 +39,8 @@
   "funding": {
     "type": "individual",
     "url": "https://www.buymeacoffee.com/lws803"
+  },
+  "dependencies": {
+    "minimatch": "^9.0.0"
   }
 }

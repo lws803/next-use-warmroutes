@@ -3,8 +3,8 @@ import fetchMock from "jest-fetch-mock";
 
 import useWarmRoutes from ".";
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn().mockReturnValue({ pathname: "/path" }),
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn().mockReturnValue("/path/to"),
 }));
 
 describe(useWarmRoutes, () => {
@@ -13,7 +13,7 @@ describe(useWarmRoutes, () => {
   });
 
   it("sends a OPTIONS request to ths specified route when current route matches", () => {
-    renderHook(() => useWarmRoutes({ "/path": ["/path/to/be/warmed/up"] }));
+    renderHook(() => useWarmRoutes({ "/**": ["/path/to/be/warmed/up"] }));
 
     expect(fetch).toHaveBeenCalledWith("/path/to/be/warmed/up", {
       method: "OPTIONS",
@@ -21,7 +21,7 @@ describe(useWarmRoutes, () => {
   });
 
   it("do not call when current route does not match", () => {
-    renderHook(() => useWarmRoutes({ "/": ["/path/to/be/warmed/up"] }));
+    renderHook(() => useWarmRoutes({ "/*": ["/path/to/be/warmed/up"] }));
 
     expect(fetch).not.toHaveBeenCalled();
   });

@@ -8,8 +8,10 @@ when the current route matches the route defined in the object.
 ## Usage
 
 ```ts
-// Use this at the root of your Next.js application, _app.tsx for maximum effectiveness
+// Use this at the root of your Next.js application, _app.tsx for maximum effectiveness.
 useWarmRoutes({
-  "/": ["/articles/*", "/api/articles"],
+  "/*": ["/articles/*", "/api/articles"],
 });
 ```
+
+> Note: keys defined in this object should be glob patterns.

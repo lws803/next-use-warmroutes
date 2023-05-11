@@ -1,10 +1,18 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+import { minimatch } from "minimatch";
 
 export default function useWarmRoutes(routesMapping: Record<string, string[]>) {
-  const router = useRouter();
+  const pathname = usePathname();
 
-  const pathsToWarmUp = routesMapping[router.pathname];
+  let pathsToWarmUp: string[] = [];
+  for (const key in routesMapping) {
+    if (minimatch(pathname, key)) {
+      pathsToWarmUp = routesMapping[key];
+      break;
+    }
+  }
+
   useEffect(() => {
     const warmupPaths = () => {
       pathsToWarmUp.forEach((path) => {
