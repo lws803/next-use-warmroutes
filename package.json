@@ -1,6 +1,6 @@
 {
   "name": "next-use-warmroutes",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Next useWarmRoutes hook gives developers control over when to warm up a specific serverless / SSR route.",
   "source": "src/index.ts",
   "main": "dist/main.js",
