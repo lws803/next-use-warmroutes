@@ -5,26 +5,25 @@ import { minimatch } from "minimatch";
 export default function useWarmRoutes(routesMapping: Record<string, string[]>) {
   const pathname = usePathname();
 
-  let pathsToWarmUp: string[] = [];
-  for (const key in routesMapping) {
-    if (minimatch(pathname, key)) {
-      pathsToWarmUp = routesMapping[key];
-      break;
-    }
-  }
-
   useEffect(() => {
-    const warmupPaths = () => {
-      pathsToWarmUp.forEach((path) => {
+    const warmupPaths = (paths: string[]) => {
+      paths.forEach((path) => {
         fetch(path, { method: "OPTIONS" }).catch(() => null);
       });
     };
 
-    pathsToWarmUp && warmupPaths();
-  }, [pathsToWarmUp]);
+    for (const key in routesMapping) {
+      if (minimatch(pathname, key)) {
+        const pathsToWarmUp = routesMapping[key];
+        return warmupPaths(pathsToWarmUp);
+      }
+    }
+  }, [pathname]);
 
   return {
-    warmRoute: (path: string) =>
-      fetch(path, { method: "OPTIONS" }).catch(() => null),
+    warmRoute: (paths: string[]) =>
+      paths.forEach((path) =>
+        fetch(path, { method: "OPTIONS" }).catch(() => null)
+      ),
   };
 }
